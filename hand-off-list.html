@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hand-Off List</title>
+<meta name="description" content="Go down the list, tick what you would hand off if someone was there tomorrow. Your first three come out of it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%9B%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  :root {
+    --ground: #FAF8F4;
+    --paper: #FFFFFF;
+    --ink: #16150F;
+    --ink-soft: #57544A;
+    --ink-faint: #8B8579;
+    --rule: #DFDAD0;
+    --flip-ground: #16150F;
+    --flip-ink: #F6F3EC;
+    --flip-soft: #B4AE9F;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #121110;
+      --paper: #1B1A17;
+      --ink: #F2EFE8;
+      --ink-soft: #A9A395;
+      --ink-faint: #79746A;
+      --rule: #34312B;
+      --flip-ground: #F2EFE8;
+      --flip-ink: #121110;
+      --flip-soft: #4E4A42;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #121110;
+    --paper: #1B1A17;
+    --ink: #F2EFE8;
+    --ink-soft: #A9A395;
+    --ink-faint: #79746A;
+    --rule: #34312B;
+    --flip-ground: #F2EFE8;
+    --flip-ink: #121110;
+    --flip-soft: #4E4A42;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  img { max-width: 100%; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Familjen Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 40rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  .masthead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.75rem 0 0;
+  }
+
+  .mark {
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 1.0625rem;
+    font-weight: 500;
+  }
+
+  .handle {
+    font-size: 0.75rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  header.top {
+    padding: 3.25rem 0 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-weight: 300;
+    font-size: clamp(2.3rem, 8vw, 3.3rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .lede { margin: 0; font-size: 1.15rem; color: var(--ink-soft); max-width: 33rem; }
+
+  .how {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .how p { margin: 0; color: var(--ink-soft); max-width: 33rem; }
+
+  section.block { padding: 2.5rem 0 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+  h2 {
+    margin: 0;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 1.55rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .note { margin: 0; color: var(--ink-faint); font-size: 0.95rem; max-width: 33rem; }
+
+  ol.tasks { list-style: none; margin: 0.4rem 0 0; padding: 0; counter-reset: t; }
+
+  ol.tasks li {
+    counter-increment: t;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  ol.tasks li:first-child { border-top: 1px solid var(--rule); }
+
+  ol.tasks label {
+    display: grid;
+    grid-template-columns: 1.9rem 1fr 1.35rem;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.85rem 0;
+    cursor: pointer;
+  }
+
+  ol.tasks label .num {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  ol.tasks label .num::before { content: counter(t, decimal-leading-zero); }
+
+  ol.tasks input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+  .box {
+    justify-self: end;
+    align-self: center;
+    width: 1.15rem;
+    height: 1.15rem;
+    border: 1px solid var(--ink-faint);
+    display: block;
+    position: relative;
+  }
+
+  ol.tasks label:has(input:checked) .box { background: var(--ink); border-color: var(--ink); }
+
+  ol.tasks label:has(input:checked) .box::after {
+    content: "";
+    position: absolute;
+    left: 0.32rem;
+    top: 0.12rem;
+    width: 0.3rem;
+    height: 0.6rem;
+    border: solid var(--ground);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  ol.tasks label:has(input:checked) .txt { color: var(--ink-faint); }
+
+  input:focus-visible + .txt + .box { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  ul.keep { list-style: none; margin: 0.3rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.65rem; }
+  ul.keep li { padding-left: 1.4rem; position: relative; color: var(--ink-soft); }
+  ul.keep li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.6rem;
+    height: 1px;
+    background: var(--ink-faint);
+  }
+
+  .verdict {
+    background: var(--flip-ground);
+    color: var(--flip-ink);
+    margin: 2.5rem 0 0;
+    padding: 2.75rem 1.5rem;
+  }
+
+  .verdict-inner {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .verdict h2 { font-size: clamp(1.7rem, 6vw, 2.2rem); font-weight: 300; }
+  .verdict p { margin: 0; }
+  .verdict .quiet { color: var(--flip-soft); }
+
+  .count {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 3.4rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .count-label { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--flip-soft); }
+
+  .after { padding: 2.75rem 0 1rem; display: flex; flex-direction: column; gap: 1rem; }
+  .after p { margin: 0; color: var(--ink-soft); max-width: 33rem; }
+
+  .btn {
+    align-self: flex-start;
+    background: transparent;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.75rem 1.35rem;
+    border: 1px solid var(--ink);
+    cursor: pointer;
+    margin-top: 0.4rem;
+  }
+
+  .btn:hover { background: var(--ink); color: var(--ground); }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 2.5rem;
+    padding: 1.6rem 0 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.875rem;
+    color: var(--ink-faint);
+  }
+
+  footer .mark { font-size: 0.9375rem; color: var(--ink); }
+
+  @media print {
+    .btn, .no-print { display: none !important; }
+    body { background: #fff; color: #000; font-size: 11pt; }
+    .verdict { background: #fff; color: #000; border: 1px solid #000; margin: 1rem 0; padding: 1rem; }
+    .verdict .quiet, .count-label { color: #444; }
+    section.block { page-break-inside: avoid; padding: 1rem 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="masthead">
+    <span class="mark">Executive Function</span>
+    <span class="handle">@executivefunction.co</span>
+  </div>
+
+  <header class="top">
+    <span class="eyebrow">Yours to keep</span>
+    <h1>The Hand-Off List</h1>
+    <p class="lede">Every task below is one that somebody else could be doing. They are in the order most people should let them go.</p>
+  </header>
+
+  <div class="how">
+    <p>Go down the list and tick anything you would hand over if someone was there tomorrow morning.</p>
+    <p>Do not weigh it up. The ones you tick fastest are the real answer.</p>
+  </div>
+
+  <section class="block">
+    <h2>Give these away first</h2>
+    <p class="note">Repeatable, low judgment, and quietly draining. Nobody needs to know your business to do them well.</p>
+    <ol class="tasks" id="first">
+      <li><label><span class="num"></span><span class="txt">Sorting the inbox. Deciding what actually needs you.</span><input type="checkbox"><span class="box"></span></label></li>
+      <li><label><span class="num"></span><span class="txt">Scheduling, rescheduling, and the reminders around both.</span><input type="checkbox"><span class="box"></span></label></li>
+      <li><label><span class="num"></span><span class="txt">Sending the follow up you already decided to send.</span><input type="checkbox"><span class="box"></span></label></li>
+      <li><label><span class="num"></span><span class="txt">Posting the thing you already wrote.</span><input type="checkbox"><span class="box"></span></label></li>
+      <li><label><span class="num"></span><span class="txt">Sending the invoice, then chasing it.</span><input type="checkbox"><span class="box"></span></label></li>
+      <li><label><span class="num"></span><span class="txt">Naming and filing. Receipts, photos, documents, downloads.</span><input type="checkbox"><span class="box"></span></label></li>
+      <li><label><span class="num"></span><span class="txt">Moving the same information between two apps by hand.</span><input type="checkbox"><span class="box"></span></label></li>
+      <li><label><span class="num"></span><span class="txt">Ordering, reordering, bookings, forms, renewals.</span><input type="checkbox"><span class="box"></span></label></li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2>Give these away next</h2>
+    <p class="note">Once someone has watched you work for a few weeks. Still yours to approve, no longer yours to make.</p>
+    <ol class="tasks">
+      <li><label><span class="num"></span><span class="txt">First draft replies, written for you to change or send.</span><input type="checkbox"><span class="box"></span></label></li>
+      <li><label><span class="num"></span><span class="txt">Repackaging what you already made. Clips, captions, reposts.</span><input type="checkbox"><span class="box"></span></label></li>
+      <li><label><span class="num"></span><span class="txt">Everything that happens after someone says yes.</span><input type="checkbox"><span class="box"></span></label></li>
+      <li><label><span class="num"></span><span class="txt">Research and shortlisting. You still pick.</span><input type="checkbox"><span class="box"></span></label></li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2>Keep these</h2>
+    <p class="note">Not because you are precious about them. Because handing them over is what makes the business feel like it stopped being yours.</p>
+    <ul class="keep">
+      <li>The work people actually pay you for.</li>
+      <li>The first real conversation with someone new.</li>
+      <li>Pricing, and saying no.</li>
+      <li>Anything where your judgment is the product.</li>
+    </ul>
+  </section>
+</div>
+
+<div class="verdict">
+  <div class="verdict-inner">
+    <span class="count-label">Ticked in the first list</span>
+    <span class="count" id="count">0</span>
+    <h2>Your first three are in there.</h2>
+    <p>Not the hardest one on the list. The three you ticked without stopping.</p>
+    <p class="quiet">Most people can hand off six to eight hours a week from that first block alone, and it costs nothing near a full hire.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="after">
+    <p>Nothing else to do. Your blueprint is already with me and I will come back to you on it.</p>
+    <p>If one of these surprised you, or you ticked something and then felt strange about it, hit reply on the email and tell me which. That reaction is usually the useful part.</p>
+    <button class="btn" type="button" id="printBtn">Print or save this page</button>
+  </div>
+
+  <footer>
+    <span class="mark">Executive Function &#128155;</span>
+    <span>@executivefunction.co</span>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var first = document.getElementById('first');
+    var out = document.getElementById('count');
+    if (first && out) {
+      first.addEventListener('change', function () {
+        out.textContent = first.querySelectorAll('input:checked').length;
+      });
+    }
+    var b = document.getElementById('printBtn');
+    if (b) { b.addEventListener('click', function () { window.print(); }); }
+  })();
+</script>
+
+</body>
+</html>
+
