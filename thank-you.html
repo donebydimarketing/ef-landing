@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Blueprint</title>
+<meta name="description" content="Your Delegation Blueprint is ready to download.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%9B%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  :root {
+    --ground: #FAF8F4;
+    --paper: #FFFFFF;
+    --ink: #16150F;
+    --ink-soft: #57544A;
+    --ink-faint: #8B8579;
+    --rule: #DFDAD0;
+    --flip-ground: #16150F;
+    --flip-ink: #F6F3EC;
+    --flip-soft: #B4AE9F;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #121110;
+      --paper: #1B1A17;
+      --ink: #F2EFE8;
+      --ink-soft: #A9A395;
+      --ink-faint: #79746A;
+      --rule: #34312B;
+      --flip-ground: #F2EFE8;
+      --flip-ink: #121110;
+      --flip-soft: #4E4A42;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #121110;
+    --paper: #1B1A17;
+    --ink: #F2EFE8;
+    --ink-soft: #A9A395;
+    --ink-faint: #79746A;
+    --rule: #34312B;
+    --flip-ground: #F2EFE8;
+    --flip-ink: #121110;
+    --flip-soft: #4E4A42;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  img { max-width: 100%; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Familjen Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 36rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  .masthead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.75rem 0 0;
+  }
+
+  .mark {
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 1.0625rem;
+    font-weight: 500;
+  }
+
+  .handle {
+    font-size: 0.75rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  header.top {
+    padding: 4rem 0 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-weight: 300;
+    font-size: clamp(2.2rem, 8vw, 3.1rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .lede { margin: 0; font-size: 1.125rem; color: var(--ink-soft); }
+
+  .get {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 2.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--flip-ground);
+    color: var(--flip-ink);
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    padding: 0.95rem 1.6rem;
+    border: 1px solid var(--flip-ground);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .btn:hover { background: transparent; color: var(--ink); }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  .fine { margin: 0; font-size: 0.9375rem; color: var(--ink-faint); }
+
+  section { padding: 2.5rem 0 0; display: flex; flex-direction: column; gap: 1rem; }
+
+  h2 {
+    margin: 0;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  p { margin: 0; color: var(--ink-soft); }
+
+  ol.steps { margin: 0.2rem 0 0; padding: 0; list-style: none; counter-reset: s;
+             display: flex; flex-direction: column; gap: 0.9rem; }
+  ol.steps li {
+    counter-increment: s;
+    padding-left: 2rem;
+    position: relative;
+    color: var(--ink-soft);
+  }
+  ol.steps li::before {
+    content: counter(s);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 3rem;
+    padding: 1.6rem 0 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.875rem;
+    color: var(--ink-faint);
+  }
+
+  footer a { color: var(--ink-faint); }
+  footer .mark { font-size: 0.9375rem; color: var(--ink); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="masthead">
+    <span class="mark">Executive Function</span>
+    <span class="handle">@executivefunction.co</span>
+  </div>
+
+  <header class="top">
+    <span class="eyebrow">Payment received</span>
+    <h1>Your blueprint is ready.</h1>
+    <p class="lede">Thank you. Everything you paid for is on this page, and your receipt is already in your inbox.</p>
+  </header>
+
+  <div class="get">
+    <a class="btn" href="delegation-blueprint.pdf" download>Download the Delegation Blueprint</a>
+    <p class="fine">Eight pages. Save it somewhere you will find it again, and bookmark this page while you are here.</p>
+  </div>
+
+  <section>
+    <h2>How to use it</h2>
+    <ol class="steps">
+      <li>Fill in the business snapshot first. Six categories, and you are only marking where things actually sit today.</li>
+      <li>Set one goal per category with a number you can measure against. Rough is fine. A number you can check in three weeks beats a perfect one you cannot.</li>
+      <li>Work through the categories in the order given. That order is the whole point of the document.</li>
+      <li>Come back to the measurement sheet in three weeks and fill in the second column.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>One thing before you start</h2>
+    <p>Do not begin with the task that annoys you most. Begin with the smallest one you keep pushing to tomorrow. It is the one quietly costing you the week, and it is the easiest to hand to somebody else.</p>
+  </section>
+
+  <section>
+    <h2>If the download does not work</h2>
+    <p>Reply to your receipt, or email hello@donebydi.com and I will send it across directly.</p>
+  </section>
+
+  <footer>
+    <span class="mark">Executive Function &#128155;</span>
+    <span><a href="https://donebydimarketing.github.io/ef-landing/hand-off-list.html">The Hand-Off List</a></span>
+  </footer>
+</div>
+
+</body>
+</html>
+
