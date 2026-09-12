@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Delegation Blueprint</title>
+<meta name="description" content="Eight pages that tell you what to hand off first, what to keep, and the order to do it in.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%9B%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  :root {
+    --ground: #FAF8F4;
+    --paper: #FFFFFF;
+    --ink: #16150F;
+    --ink-soft: #57544A;
+    --ink-faint: #8B8579;
+    --rule: #DFDAD0;
+    --flip-ground: #16150F;
+    --flip-ink: #F6F3EC;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #121110;
+      --paper: #1B1A17;
+      --ink: #F2EFE8;
+      --ink-soft: #A9A395;
+      --ink-faint: #79746A;
+      --rule: #34312B;
+      --flip-ground: #F2EFE8;
+      --flip-ink: #121110;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #121110;
+    --paper: #1B1A17;
+    --ink: #F2EFE8;
+    --ink-soft: #A9A395;
+    --ink-faint: #79746A;
+    --rule: #34312B;
+    --flip-ground: #F2EFE8;
+    --flip-ink: #121110;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  img { max-width: 100%; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Familjen Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 38rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  .masthead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.75rem 0 0;
+  }
+
+  .mark {
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 1.0625rem;
+    font-weight: 500;
+  }
+
+  .handle {
+    font-size: 0.75rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  header.top {
+    padding: 3.5rem 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-weight: 300;
+    font-size: clamp(2.2rem, 8vw, 3.1rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .lede { margin: 0; font-size: 1.15rem; color: var(--ink-soft); }
+
+  section { padding: 2.5rem 0 0; display: flex; flex-direction: column; gap: 1rem; }
+
+  h2 {
+    margin: 0;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  p { margin: 0; color: var(--ink-soft); }
+  p.strong { color: var(--ink); }
+
+  ol.pages { margin: 0.2rem 0 0; padding: 0; list-style: none; counter-reset: s;
+             display: flex; flex-direction: column; gap: 0.8rem; }
+  ol.pages li {
+    counter-increment: s;
+    padding-left: 3.4rem;
+    position: relative;
+    color: var(--ink-soft);
+  }
+  ol.pages li::before {
+    content: "Page " counter(s);
+    position: absolute;
+    left: 0;
+    top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  ul.ticks { margin: 0.2rem 0 0; padding: 0; list-style: none;
+             display: flex; flex-direction: column; gap: 0.65rem; }
+  ul.ticks li {
+    padding-left: 1.35rem;
+    position: relative;
+    color: var(--ink-soft);
+  }
+  ul.ticks li::before {
+    content: "\2014";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--ink-faint);
+  }
+
+  .areas {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-top: 0.4rem;
+    padding: 1.25rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem 1.5rem;
+  }
+  .areas span { font-size: 0.95rem; color: var(--ink-soft); }
+
+  .buybox {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-top: 2.75rem;
+    padding: 2.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .price {
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 2.6rem;
+    line-height: 1;
+    font-weight: 400;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--flip-ground);
+    color: var(--flip-ink);
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    padding: 0.95rem 1.6rem;
+    border: 1px solid var(--flip-ground);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .btn:hover { background: transparent; color: var(--ink); }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  .fine { margin: 0; font-size: 0.9375rem; color: var(--ink-faint); }
+
+  a { color: var(--ink); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 3rem;
+    padding: 1.6rem 0 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.875rem;
+    color: var(--ink-faint);
+  }
+
+  footer a { color: var(--ink-faint); }
+  footer .mark { font-size: 0.9375rem; color: var(--ink); }
+
+  @media (max-width: 30rem) {
+    .areas { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="masthead">
+    <span class="mark">Executive Function</span>
+    <span class="handle">@executivefunction.co</span>
+  </div>
+
+  <header class="top">
+    <span class="eyebrow">The workbook</span>
+    <h1>The Delegation Blueprint</h1>
+    <p class="lede">Eight pages that tell you what to hand off first, what to keep, and the order to do it in.</p>
+  </header>
+
+  <section>
+    <h2>What it is</h2>
+    <p>A workbook you fill in once. It takes about forty minutes.</p>
+    <p>At the end you have three tasks picked, written down, and ready to give to somebody else. You also have a way to check in three weeks whether it worked.</p>
+  </section>
+
+  <section>
+    <h2>What is inside</h2>
+    <ol class="pages">
+      <li>What this is, and how to use it.</li>
+      <li>Your business snapshot. Where your time actually goes, across six areas.</li>
+      <li>Choosing your first three, using a keep or leave rule.</li>
+      <li>Your delegation plan, part one.</li>
+      <li>Your delegation plan, part two.</li>
+      <li>Who does it.</li>
+      <li>The measurement sheet. Today in one column, three weeks from now in the other.</li>
+      <li>After three weeks. What worked, what half worked, what did not.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>The six areas</h2>
+    <div class="areas">
+      <span>Inbox and messages</span>
+      <span>Calendar and scheduling</span>
+      <span>Money in and out</span>
+      <span>Content and posting</span>
+      <span>Following through with people</span>
+      <span>Files, systems and admin</span>
+    </div>
+    <p class="fine">Every task you do sits in one of these. That is why the order matters.</p>
+  </section>
+
+  <section>
+    <h2>This is for you if</h2>
+    <ul class="ticks">
+      <li>You spend hours on work somebody else could do.</li>
+      <li>You tried getting help before and it did not stick.</li>
+      <li>You know you need help and you cannot say what to hand over first.</li>
+      <li>You are a long way from hiring someone full time.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Skip it if</h2>
+    <ul class="ticks">
+      <li>You already have a team running well without you.</li>
+      <li>You want somebody else to do the deciding for you.</li>
+      <li>You want people doing the work with you starting now. That is the guided version below.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What happens in three weeks</h2>
+    <p>You come back to page seven and fill in the second column.</p>
+    <p>Your own hours sit side by side. You see what moved and what did not, in your own handwriting, on one page. That is the whole point of the sheet.</p>
+  </section>
+
+  <section>
+    <h2>What waiting costs</h2>
+    <p>Every week you hold on to the small tasks, you pay twice. Once in the hours. Once in the work you never got to because the hours were gone.</p>
+    <p>The tasks do not get easier to explain later. They get bigger and more tangled, and by then they are in your head only.</p>
+  </section>
+
+  <div class="buybox">
+    <span class="price">$49</span>
+    <a class="btn" href="https://buy.stripe.com/4gM5kC22m3EM1WD4JCgYU04">Get the Delegation Blueprint</a>
+    <p class="fine">One payment. The PDF is yours to keep and comes straight after you pay. Nothing to book and nothing to sit through.</p>
+  </div>
+
+  <section>
+    <h2>If you want people, not just the plan</h2>
+    <p>There is a guided version at $149. Three Executive VAs work the plan with you for three weeks, so the tasks actually leave your plate.</p>
+    <p>Email <a href="mailto:hello@donebydi.com">hello@donebydi.com</a> and say guided blueprint. I will send you what it covers.</p>
+  </section>
+
+  <section>
+    <h2>Want to try something free first</h2>
+    <p>The <a href="hand-off-list.html">Hand-Off List</a> takes two minutes. It shows which tasks are worth giving away and in what order.</p>
+  </section>
+
+  <footer>
+    <span class="mark">Executive Function &#128155;</span>
+    <span><a href="./">The Middle Ground</a></span>
+  </footer>
+</div>
+
+</body>
+</html>
+
